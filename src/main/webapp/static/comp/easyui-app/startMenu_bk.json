@@ -1,0 +1,23 @@
+[{
+    "id":"startMenu1",
+    "text":"新浪微博",
+    "href":"http://weibo.com",
+    "children":[{
+	    "id":"startMenu11",
+	    "text":"夏悸的微博",
+	    "href":"http://weibo.com/521090828",
+	"iconCls":"icon-ok"
+    }],
+	"iconCls":"icon-ok"
+},{
+    "id":"startMenu2",
+    "text":"Sina",
+    "href":"http://www.sina.com",
+	"iconCls":"icon-ok"
+},
+{
+    "id":"startMenu3",
+    "text":"GodSon",
+    "href":"http://www.btboys.com",
+	"iconCls":"icon-ok"
+},"-"]

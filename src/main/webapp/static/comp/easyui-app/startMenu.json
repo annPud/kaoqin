@@ -1,0 +1,11 @@
+[{
+    "id":"startMenu1",
+    "text":"百度",
+    "href":"http://www.baidu.com",
+	"iconCls":"icon-ok"
+},{
+    "id":"startMenu3",
+    "text":"淘宝",
+    "href":"http://www.taobao.com",
+	"iconCls":"icon-ok"
+},"-"]

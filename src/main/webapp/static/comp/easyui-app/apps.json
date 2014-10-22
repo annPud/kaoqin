@@ -1,0 +1,20 @@
+[{
+		"id" : "1",
+		"text" : "easyui社区",
+		"href" : "http://bbs.btboys.com",
+		"icon" : "themes/windows/icons/computer.png",
+		"cnf":{
+			
+		}
+	}, {
+		"id" : "2",
+		"text" : "回收站",
+		"href" : "opened.html",
+		"icon" : "themes/windows/icons/bin.png"
+	}, {
+		"id" : "3",
+		"text" : "网络连接",
+		"href" : "opened.html",
+		"icon" : "themes/windows/icons/dns.png"
+	}
+]
