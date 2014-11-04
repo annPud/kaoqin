@@ -35,7 +35,7 @@ var DayZone = function(date) {
 	timeZones[4] = timeZones[1];
 	
 	dayZones[5] = new Array('2014/10/01', '2015/05/01');
-	timeZones[4] = timeZones[0];
+	timeZones[5] = timeZones[0];
 
 	var dayDate = new Date(date.toDateString());
 
