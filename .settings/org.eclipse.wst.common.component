@@ -7,9 +7,6 @@
         <dependent-module archiveName="service-let-join-dm-1.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service-let-join-dm/service-let-join-dm">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="top-exception-1.0.3-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/top-exception/top-exception">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="kaoqin"/>
         <property name="java-output-path" value="/kaoqin/target/classes"/>
     </wb-module>
