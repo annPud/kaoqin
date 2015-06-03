@@ -36,6 +36,12 @@ var DayZone = function(date) {
 	
 	dayZones[5] = new Array('2014/10/01', '2015/05/01');
 	timeZones[5] = timeZones[0];
+	
+	dayZones[6] = new Array('2015/05/01', '2015/10/01');
+	timeZones[6] = timeZones[1];
+	
+	dayZones[7] = new Array('2015/10/01', '2016/05/01');
+	timeZones[7] = timeZones[0];
 
 	var dayDate = new Date(date.toDateString());
 
