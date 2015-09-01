@@ -10,8 +10,7 @@
 <script type="text/javascript">
 	var uri = "${uri}";
 </script>
-<script type="text/javascript"
-	src="${uri}/static/js/materialDateGroup/month.js"></script>
+<script type="text/javascript" src="${uri}/static/js/datetimeUtil.js"></script>
 
 <style>
 html, body {

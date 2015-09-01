@@ -50,7 +50,7 @@ public class KaoqinController {
 	public String fullCalender(HttpServletRequest req,String ename, Model model) {
 		log.info(ename);
 		model.addAttribute("ename", ename);
-		return "/fullcalender";
+		return "/calender";
 	}
 
 	private void writeJson(String jsonData, HttpServletResponse res) {

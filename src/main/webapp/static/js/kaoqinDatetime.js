@@ -1,4 +1,11 @@
-var DayZone = function(date) {
+
+/**
+ * 日期时间区间
+ */
+var DateTimeZone = function(date) {
+	/**
+	 * 指定范围
+	 */
 	var dayZones = new Array();
 	var timeZones = new Array();
 	dayZones[0] = new Array('1970/01/01', '2013/05/08');
@@ -13,52 +20,34 @@ var DayZone = function(date) {
 	dayZones[3] = new Array('2014/02/10', '2014/05/19');
 	timeZones[3] = new Array('09:00:00', '12:00:00', '13:00:00', '18:00:00');
 
-	dayZones[4] = new Array('2014/05/19', '2014/10/01');
-	timeZones[4] = timeZones[1];
-	
-	dayZones[5] = new Array('2014/10/01', '2015/05/01');
-	timeZones[5] = timeZones[0];
-	
-	dayZones[6] = new Array('2015/05/01', '2015/10/01');
-	timeZones[6] = timeZones[1];
-	
-	dayZones[7] = new Array('2015/10/01', '2016/05/01');
-	timeZones[7] = timeZones[0];
+	/**
+	 * 默认范围
+	 */
+	var defaultDayZones = new Array();
+	var defaultTimeZones = new Array();
+	defaultDayZones[0] = new Array('10/01', '05/01');
+	defaultTimeZones[0] = timeZones[0];
 
-	var dayDate = new Date(date.toDateString());
+	defaultDayZones[1] = new Array('05/01', '10/01');
+	defaultTimeZones[1] = timeZones[1];
 
-	this.getTime = function() {
-		var no = zoneNo(dayDate);
-		var timeZone = timeZones[no];
-		var times = new Array();
-		for (var i = 0; i < timeZone.length; i++) {
-			times[i] = timeToDate(dayDate, timeZone[i]);
-		}
-		return times;
-	};
-
-	var dayToDate = function(dayString) {
-		return new Date(dayString + " 00:00:00");
-	};
-	var zoneNo = function(date) {
+	// 获取上下班时间
+	this.onOffTime = function() {
+		// 指定范围
 		for (var i = 0; i < dayZones.length; i++) {
-			var start = dayToDate(dayZones[i][0]).getTime();
-			var end = dayToDate(dayZones[i][1]).getTime();
-			if (start <= date.getTime() && date.getTime() < end) {
-				return i;
-			};
+			if (datetimeUtil.isInDayZone(date, dayZones[i])) {
+				console.log('day zone ' + i);
+				return datetimeUtil.toDate(date, timeZones[i]);
+			}
+		}
+		for (var i = 0; i < defaultDayZones.length; i++) {
+			if (datetimeUtil.isInDayZone(date, defaultDayZones[i])) {
+				console.log('default day zone ' + i);
+				return datetimeUtil.toDate(date, defaultTimeZones[i]);
+			}
 		}
 	};
-	var timeToDate = function(dayDate, timeString) {
-		var timeDate = new Date(dayDate.toDateString());
-		var arr = timeString.split(':');
-		timeDate.setHours(arr[0]);
-		timeDate.setMinutes(arr[1]);
-		timeDate.setSeconds(arr[2]);
-		return timeDate;
-	};
-
-};
+}
 
 /**
  * 分组对象：月
@@ -96,7 +85,6 @@ var MonthKaoqin = function(monthDate) {
 		}
 		return clocks;
 	};
-
 };
 /**
  * 分组对象：天
@@ -106,12 +94,19 @@ var MonthKaoqin = function(monthDate) {
  */
 var DayKaoqin = function(clockKaoqin) {
 	this.dateString = clockKaoqin.date.toLocaleDateString();
-	this.date = new Date(clockKaoqin.date.toDateString());
-	this.amOnTime = new Date(this.date);// AM上班时间
-	this.amOffTime = new Date(this.date);// AM下班时间
-	this.pmOnTime = new Date(this.date);// PM上班时间
-	this.pmOffTime = new Date(this.date);// PM下班时间
+	this.date = new Date(clockKaoqin.date);
+	/**
+	 * 设置上下班时间
+	 */
+	var dz = new DateTimeZone(this.date);
+	var timeArr = dz.onOffTime();
+	this.amOnTime = timeArr[0];// AM上班时间
+	this.amOffTime = timeArr[1];// AM下班时间
+	this.pmOnTime = timeArr[2];// PM上班时间
+	this.pmOffTime = timeArr[3];// PM下班时间
+
 	this.clocks = new Array();// 当天打卡记录
+
 	/**
 	 * 设置打卡时间
 	 */
@@ -168,44 +163,6 @@ var DayKaoqin = function(clockKaoqin) {
 		}
 		this.clocks = clockArr;
 	};
-	/**
-	 * 设置上下班时间
-	 */
-	var dz = new DayZone(this.date);
-	var timeArr = dz.getTime();
-	this.amOnTime = timeArr[0];
-	this.amOffTime = timeArr[1];
-	this.pmOnTime = timeArr[2];
-	this.pmOffTime = timeArr[3];
-
-	// /**
-	// * 判断上下班时间
-	// */
-	// // 新规则new rule 1
-	// if (this.date.getTime() - new Date(nr1LineDateStart).getTime() >= 0) {
-	// setTime(this.amOnTime, nr1amOnTimeStr);
-	// setTime(this.amOffTime, nr1amOffTimeStr);
-	// setTime(this.pmOnTime, nr1pmOnTimeStr);
-	// setTime(this.pmOffTime, nr1pmOffTimeStr);
-	// } else {
-	// setTime(this.amOnTime, amOnTimeStr);
-	// setTime(this.amOffTime, amOffTimeStr);
-	// if (this.date.getTime() - new Date(summerLineDateStart).getTime() < 0) {
-	// setTime(this.pmOnTime, pmOnTimeWinterStr);
-	// setTime(this.pmOffTime, pmOffTimeWinterStr);
-	// } else if (this.date.getTime()
-	// - new Date(this.date.getFullYear() + summerLine).getTime() > 0
-	// && this.date.getTime()
-	// - new Date(this.date.getFullYear() + winnerLine)
-	// .getTime() < 0) {
-	// setTime(this.pmOnTime, pmOnTimeSummerStr);
-	// setTime(this.pmOffTime, pmOffTimeSummerStr);
-	// } else {
-	// setTime(this.pmOnTime, pmOnTimeWinterStr);
-	// setTime(this.pmOffTime, pmOffTimeWinterStr);
-	// }
-	// }
-
 };
 /**
  * 分组对象：打卡次
@@ -233,10 +190,3 @@ var ClockKaoqin = function(ms) {
 	this.LATE_30_60 = 3;// 迟到30-60分钟
 	this.LATE_60_ = 4;// 迟到60分钟以上
 };
-
-// function setTime(date, timeStr) {
-// var arr = timeStr.split(':');
-// date.setHours(arr[0]);
-// date.setMinutes(arr[1]);
-// date.setSeconds(arr[2]);
-// }

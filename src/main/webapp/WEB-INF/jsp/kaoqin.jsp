@@ -7,8 +7,7 @@
 <title>kaoqin.jsp</title>
 <%@include file="material/jqueryui.jsp"%>
 <%@include file="material/jqgrid.jsp"%>
-<script type="text/javascript"
-	src="${uri}/static/js/kaoqin.js"></script>
+<script type="text/javascript" src="${uri}/static/js/kaoqinJQ.js"></script>
 </head>
 <body>
 	<div style="width: 97%">

@@ -1,7 +1,7 @@
-var monthDateArr = defaultMonthDate.split('-');
-var year = monthDateArr[0];
-var month = monthDateArr[1] - 1;
-var date = monthDateArr[2];
+//var monthDateArr = defaultMonthDate.split('-');
+//var year = monthDateArr[0];
+//var month = monthDateArr[1] - 1;
+//var date = monthDateArr[2];
 
 var CountCalendar = function(monthKaoqin) {
 	// 迟到次数统计
@@ -28,10 +28,10 @@ var CountCalendar = function(monthKaoqin) {
 		$late.find('div').html(lates[i]);
 		var color = new ColorLate(i).init();
 		$late.find('label').css({
-					'color' : color.textColor,
-					'border' : '1px solid ' + color.borderColor,
-					'background-color' : color.backgroundColor
-				});
+			'color' : color.textColor,
+			'border' : '1px solid ' + color.borderColor,
+			'background-color' : color.backgroundColor
+		});
 	}
 	// 设置迟到1扣款
 	var late1Count = lates[1];
@@ -49,10 +49,10 @@ var CountCalendar = function(monthKaoqin) {
 	var color = new ColorForgot().init();
 	var $forgot = $('#forgot');
 	$forgot.find('label').css({
-				'color' : color.textColor,
-				'border' : '1px solid ' + color.borderColor,
-				'background-color' : color.backgroundColor
-			});
+		'color' : color.textColor,
+		'border' : '1px solid ' + color.borderColor,
+		'background-color' : color.backgroundColor
+	});
 	$forgot.find('div').html(forgot);
 	// 设置出勤天数
 	$('#chuqin').find('div').last().html(monthKaoqin.days.length);
@@ -62,8 +62,10 @@ var CountCalendar = function(monthKaoqin) {
 var ValueCalendar = function(clock) {
 	this.start = clock.date;// 开始时间
 	// 显示标题
-	this.title = n0(clock.date.getHours()) + ':' + n0(clock.date.getMinutes())
-			+ ':' + n0(clock.date.getSeconds());
+	// this.title = n0(clock.date.getHours()) + ':' +
+	// n0(clock.date.getMinutes())
+	// + ':' + n0(clock.date.getSeconds());
+	this.title = datetimeUtil.toTimeString(clock.date);
 	var color = new Object();
 	if (clock.isForgot) {
 		color = new ColorForgot();
@@ -102,18 +104,18 @@ var ColorLate = function(lateLevel) {
 		this.backgroundColor = 'yellow';
 	}
 	switch (lateLevel) {
-		case 1 :
-			this.textColor = 'red';
-			break;
-		case 2 :
-			this.textColor = 'blue';
-			break;
-		case 3 :
-			this.textColor = 'purple';
-			break;
-		case 4 :
-			this.textColor = 'green';
-			break;
+	case 1:
+		this.textColor = 'red';
+		break;
+	case 2:
+		this.textColor = 'blue';
+		break;
+	case 3:
+		this.textColor = 'purple';
+		break;
+	case 4:
+		this.textColor = 'green';
+		break;
 	}
 	this.init = function() {
 		if ('' == this.textColor) {
@@ -139,14 +141,17 @@ var fcOptions = {
 	contentHeight : 500,
 	weekMode : 'variable',
 	/** 变量 */
-	year : year,
-	month : month,
-	date : date,
+	// year : year,
+	// month : month,
+	// date : date,
+	year : datetimeUtil.lastMonthsYearNum(),
+	month : datetimeUtil.lastMonthsMonthNum(),
+	date : datetimeUtil.lastMonthsDateNum(),
 	/** 本地化 */
-	monthNames : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月',
-			'十一月', '十二月'],
-	dayNames : ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-	dayNamesShort : ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+	monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月',
+			'十一月', '十二月' ],
+	dayNames : [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
+	dayNamesShort : [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
 	buttonText : {
 		today : '今天',
 		month : '月',
@@ -155,20 +160,21 @@ var fcOptions = {
 	},
 	/** 数据 */
 	events : function(start, end, callback) {
-		var monthFirst = getMonthFirst(start);
+		// var monthFirst = getMonthFirst(start);
+		var monthFirst = datetimeUtil.monthFirstDayPerWeek(start);
 		$.getJSON(uri + '/detailByNameJson', {
-					ename : ename,
-					monthDate : monthFirst
-				}, function(jsonObj, status) {
-					var monthKaoqin = new MonthKaoqin(monthFirst);
-					if ('success' == status) {
-						$.each(jsonObj, function(ind, val) {
-									monthKaoqin.putClock(val.clock);
-								});
-					}
-					var cc = new CountCalendar(monthKaoqin);
-					callback(cc.values);
+			ename : ename,
+			monthDate : monthFirst
+		}, function(jsonObj, status) {
+			var monthKaoqin = new MonthKaoqin(monthFirst);
+			if ('success' == status) {
+				$.each(jsonObj, function(ind, val) {
+					monthKaoqin.putClock(val.clock);
 				});
+			}
+			var cc = new CountCalendar(monthKaoqin);
+			callback(cc.values);
+		});
 	},
 	viewDisplay : function(view) {
 		$('td.fc-sat,td.fc-sun').addClass('weekend_bkc');
@@ -176,28 +182,29 @@ var fcOptions = {
 };
 
 $(document).ready(function() {
-			$('#detail_fc').fullCalendar(fcOptions);
-		});
+	$('#detail_fc').fullCalendar(fcOptions);
+});
 
-/**
- * 下一个1号
- * 
- * @param {}
- *            dateString
- * @return {}
- */
-function getMonthFirst(date) {
-	var nowDate = new Date(date.toDateString());
-	if (1 == nowDate.getDate()) {
-
-	} else {
-		nowDate.setDate(1);
-		nowDate.setMonth(nowDate.getMonth() + 1);
-	}
-	var y = nowDate.getFullYear();
-	var m = nowDate.getMonth() + 1;
-	if (m < 10) {
-		m = '0' + m;
-	};
-	return y + '-' + m + '-01';
-}
+// /**
+// * 下一个1号
+// *
+// * @param {}
+// * dateString
+// * @return {}
+// */
+// function getMonthFirst(date) {
+// var nowDate = new Date(date.toDateString());
+// if (1 == nowDate.getDate()) {
+//
+// } else {
+// nowDate.setDate(1);
+// nowDate.setMonth(nowDate.getMonth() + 1);
+// }
+// var y = nowDate.getFullYear();
+// var m = nowDate.getMonth() + 1;
+// if (m < 10) {
+// m = '0' + m;
+// }
+// ;
+// return y + '-' + m + '-01';
+// }

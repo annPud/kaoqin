@@ -10,10 +10,8 @@
 <script type="text/javascript">
 	ename = '${ename}';
 </script>
-<script type="text/javascript"
-	src="${uri}/static/js/materialDateGroup/datetime.js"></script>
-<script type="text/javascript"
-	src="${uri}/static/js/fullcalendarDateGroup.js"></script>
+<script type="text/javascript" src="${uri}/static/js/kaoqinDatetime.js"></script>
+<script type="text/javascript" src="${uri}/static/js/kaoqinFullcalendar.js"></script>
 
 <style>
 body {
@@ -50,7 +48,6 @@ ul.tishi li {
 	list-style-type: none;
 	margin: 5px 0px 5px 0px;
 	float: left;
-	
 }
 
 ul.tishi li div {

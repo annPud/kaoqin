@@ -39,3 +39,18 @@ GROUP BY
     ckno
 ORDER BY
     ckno ASC;
+
+SELECT
+    COUNT(g.ename)
+FROM
+    (
+        SELECT
+            ename
+        FROM
+            kaoqin
+        WHERE
+            clock BETWEEN '2015/08/01' AND '2015/09/01'
+        GROUP BY
+            ename,
+            ckno
+    ) g;
