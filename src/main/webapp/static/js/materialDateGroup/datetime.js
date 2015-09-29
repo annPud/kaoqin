@@ -1,21 +1,3 @@
-// var amOnTimeStr = '08:30:00';
-// var amOffTimeStr = '12:00:00';
-// var pmOnTimeSummerStr = '14:00:00';
-// var pmOffTimeSummerStr = '18:00:00';
-// var pmOnTimeWinterStr = '13:30:00';
-// var pmOffTimeWinterStr = '17:30:00';
-//
-// var summerLineDateStart = '2013/05/08 00:00:00';
-// var summerLine = '/05/01 00:00:00';
-// var winnerLine = '/11/01 00:00:00';
-//
-// // 新规则new rule 1，9:00am上班，12:00am下班，13::00pm上班，18:00pm下班
-// var nr1LineDateStart = '2014/02/10 00:00:00';
-// var nr1amOnTimeStr = '09:00:00';
-// var nr1amOffTimeStr = '12:00:00';
-// var nr1pmOnTimeStr = '13:00:00';
-// var nr1pmOffTimeStr = '18:00:00';
-
 var DayZone = function(date) {
 	var dayZones = new Array();
 	var timeZones = new Array();

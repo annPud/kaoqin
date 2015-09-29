@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhu.kaoqin.mapper.KaoqinMapper">
+	<select id="selectdetailByName" resultType="Kaoqin">
+		SELECT
+		*
+		FROM
+		kaoqin
+		WHERE ename = #{0}
+		AND clock BETWEEN #{1} AND #{2}
+		ORDER BY clock ASC;
+	</select>
+
+	<select id="selectGroupByName" resultType="NameView">
+		SELECT
+		*
+		FROM
+		kaoqin
+		WHERE
+		clock BETWEEN #{0} AND #{1}
+		GROUP BY
+		ename,
+		ckno
+		ORDER BY
+		${sidx}
+		${sord}
+	</select>
+
+	<select id="selectCountGroupByName" resultType="Long">
+		SELECT
+		COUNT(g.ename)
+		FROM
+		(
+		SELECT
+		ename
+		FROM
+		kaoqin
+		WHERE
+		clock BETWEEN
+		#{0} AND
+		#{1}
+		GROUP BY
+		ename,
+		ckno
+		) g;
+	</select>
+</mapper>

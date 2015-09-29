@@ -1,38 +1,27 @@
-/**
- * 
- */
 package com.zhu.kaoqin.vo;
 
-import java.io.Serializable;
 import java.util.List;
 
-import com.zhu.kaoqin.entity.KaoqinEntity;
+import com.zhu.kaoqin.tb.Kaoqin;
 
 /**
- *
- * @作者： 朱伟亮
- * @创建时间：2013-5-7 上午9:16:21
+ * 
+ * @author zhuwl120820@gxwsxx.com
+ * @since 1.0
  */
-public class JDetailByNameVo extends GlobalRequestVo{
+public class JDetailByNameVo extends GlobalRequestVo {
 
-	/**
-	 * 
-	 * @作者：朱伟亮
-	 * @创建时间：2013-5-7 上午9:18:54
-	 */
 	private static final long serialVersionUID = 1783920573043832892L;
 
 	private String ename;
 
-//	private String offTime;
-	
-	private List<KaoqinEntity> list;
+	private List<Kaoqin> list;
 
-	public List<KaoqinEntity> getList() {
+	public List<Kaoqin> getList() {
 		return list;
 	}
 
-	public void setList(List<KaoqinEntity> list) {
+	public void setList(List<Kaoqin> list) {
 		this.list = list;
 	}
 
@@ -43,15 +32,4 @@ public class JDetailByNameVo extends GlobalRequestVo{
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
-
-	// public String getOffTime() {
-	// return offTime;
-	// }
-	//
-	// public void setOffTime(String offTime) {
-	// this.offTime = offTime;
-	// }
-	
-
-
 }

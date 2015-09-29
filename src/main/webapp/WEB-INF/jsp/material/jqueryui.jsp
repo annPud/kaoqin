@@ -10,16 +10,11 @@
 <script type="text/javascript">
 	var uri = "${uri}";
 </script>
-<!-- 
-<script type="text/javascript"
-	src="${uri}/static/js/material/zhuDatetimeUtils.js"></script>
-<script type="text/javascript"
-	src="${uri}/static/js/material/onOffTime.js"></script> -->
 <script type="text/javascript"
 	src="${uri}/static/js/materialDateGroup/month.js"></script>
 
 <style>
-html,body {
+html, body {
 	margin: 0;
 	padding: 0;
 	font-size: 75%;

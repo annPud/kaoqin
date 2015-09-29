@@ -1,22 +1,14 @@
-/**
- * 
- */
 package com.zhu.kaoqin.vo;
 
 import java.io.Serializable;
 
 /**
  * 
- * @作者： 朱伟亮
- * @创建时间：2013-4-18 上午9:55:00
+ * @author zhuwl120820@gxwsxx.com
+ * @since 1.0
  */
 public class GlobalRequestVo implements Serializable {
 
-	/**
-	 * 
-	 * @作者：朱伟亮
-	 * @创建时间：2013-4-18 上午9:56:02
-	 */
 	private static final long serialVersionUID = 348059632804958380L;
 	private String monthDate;
 

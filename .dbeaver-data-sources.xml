@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="mariaDB-1501835a8d5-11b8e63ef101ce34" provider="mysql" driver="mariaDB" name="MariaDB - kaoqin" create-date="1443515192422" update-date="1443515203294" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="kaoqin" url="jdbc:mysql://localhost:3306/kaoqin" user="annpud" password="AhMDdhQXF0RUcuc=" type="dev">
+			<property name="@dbeaver-ssl@" value="false"/>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="keyPath" value=""/>
+				<property name="host" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<bootstrap/>
+		</connection>
+	</data-source>
+</data-sources>
