@@ -15,6 +15,8 @@
 		<version.druid>1.0.15</version.druid>
 		<version.mybatis>3.3.0</version.mybatis>
 		<version.mybatis.spring>1.2.3</version.mybatis.spring>
+		<version.slf4j>1.7.12</version.slf4j>
+		<version.log4j>1.2.17</version.log4j>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,9 +48,14 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<version>${version.log4j}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.sun.jmx</groupId>
