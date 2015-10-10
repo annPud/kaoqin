@@ -25,10 +25,10 @@ var DateTimeZone = function(date) {
 	 */
 	var defaultDayZones = new Array();
 	var defaultTimeZones = new Array();
-	defaultDayZones[0] = new Array('10/01', '05/01');
+	defaultDayZones[0] = new Array('11/01', '05/01');
 	defaultTimeZones[0] = timeZones[0];
 
-	defaultDayZones[1] = new Array('05/01', '10/01');
+	defaultDayZones[1] = new Array('05/01', '11/01');
 	defaultTimeZones[1] = timeZones[1];
 
 	// 获取上下班时间
