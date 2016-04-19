@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSON;
+//import com.alibaba.fastjson.JSON;
 import com.zhu.kaoqin.service.KaoqinService;
 import com.zhu.kaoqin.vo.JDetailByNameVo;
 import com.zhu.kaoqin.vo.JPageBaseVo;
@@ -37,13 +37,13 @@ public class KaoqinController {
 
 	@RequestMapping("/groupByNameJson")
 	public void groupByNameJson(JPageBaseVo vo, HttpServletResponse res) {
-		writeJson(JSON.toJSONString(ks.groupByName(vo)), res);
+//		writeJson(JSON.toJSONString(ks.groupByName(vo)), res);
 	}
 
 	@RequestMapping("/detailByNameJson")
 	public void detailByName(JDetailByNameVo vo, HttpServletResponse res) {
 		log.info(vo.getEname() + "" + vo.getMonthDate());
-		writeJson(JSON.toJSONString(ks.detailByName(vo)), res);
+//		writeJson(JSON.toJSONString(ks.detailByName(vo)), res);
 	}
 
 	@RequestMapping("/detailByName")

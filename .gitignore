@@ -1,5 +1,10 @@
+/.idea
+/.dbeaver-data-sources.xml
 /target/
 /.settings/
 /.classpath
 /.project
 /.springBeans
+/kaoqin.iml
+/doc123
+/Scripts
