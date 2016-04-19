@@ -10,10 +10,4 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 
-	<typeAliases>
-		<package name="java.lang" />
-		<package name="com.zhu.kaoqin.tb" />
-		<package name="com.zhu.kaoqin.view" />
-	</typeAliases>
-
 </configuration>
