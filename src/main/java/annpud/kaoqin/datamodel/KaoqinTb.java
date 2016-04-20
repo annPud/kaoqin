@@ -81,4 +81,12 @@ public class KaoqinTb {
     public void setCdno(Integer cdno) {
         this.cdno = cdno;
     }
+
+    public Timestamp getClock() {
+        return clock;
+    }
+
+    public void setClock(Timestamp clock) {
+        this.clock = clock;
+    }
 }

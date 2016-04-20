@@ -1,6 +1,6 @@
 package annpud.kaoqin.datamodel;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 考勤数据对象
@@ -8,8 +8,8 @@ import java.sql.Date;
  */
 public class KaoqinDm {
     String ename;
-    Date clock;
-    Boolean isValid;
+    Timestamp clock;
+    Boolean isFogot;
     Integer lateLevel;
 
     public String getEname() {
@@ -20,24 +20,24 @@ public class KaoqinDm {
         this.ename = ename;
     }
 
-    public Date getClock() {
+    public Timestamp getClock() {
         return clock;
     }
 
-    public void setClock(Date clock) {
+    public void setClock(Timestamp clock) {
         this.clock = clock;
-    }
-
-    public Boolean getValid() {
-        return isValid;
-    }
-
-    public void setValid(Boolean valid) {
-        isValid = valid;
     }
 
     public Integer getLateLevel() {
         return lateLevel;
+    }
+
+    public Boolean getFogot() {
+        return isFogot;
+    }
+
+    public void setFogot(Boolean fogot) {
+        isFogot = fogot;
     }
 
     public void setLateLevel(Integer lateLevel) {

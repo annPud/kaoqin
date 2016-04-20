@@ -19,7 +19,7 @@ public interface KaoqinTbMapper {
      * @param endTime   结束时间
      * @return 考勤对象集
      */
-    @Select("SELECT * FROM kaoqin WHERE ename = #{0} AND clock BETWEEN #{1} AND #{2} ORDER BY clock ASC")
+    @Select("SELECT * FROM kaoqin_tb WHERE ename = #{0} AND clock BETWEEN #{1} AND #{2} ORDER BY clock ASC")
     List<KaoqinTb> selectByEname(String ename, Date startTime, Date endTime);
 
     /**
@@ -29,7 +29,7 @@ public interface KaoqinTbMapper {
      * @param sord      排序方式
      * @return 考勤对象集
      */
-    @Select("SELECT * FROM kaoqin WHERE clock BETWEEN #{0} AND #{1} GROUP BY ename, ckno ORDER BY ${2} ${3}")
+    @Select("SELECT ename,ckno FROM kaoqin_tb WHERE clock BETWEEN #{0} AND #{1} GROUP BY ename, ckno ORDER BY #{2} #{3}")
     List<KaoqinTb> selectByEnameGroup(Date startTime, Date endTime, String sidx, String sord);
 
     /**
@@ -37,6 +37,6 @@ public interface KaoqinTbMapper {
      * @param endTime   结束时间
      * @return 集合数
      */
-    @Select("SELECT COUNT(g.ename) FROM (SELECT ename FROM kaoqin WHERE clock BETWEEN #{0} AND #{1} GROUP BY ename, ckno ) g")
+    @Select("SELECT COUNT(g.ename) FROM (SELECT ename FROM kaoqin_tb WHERE clock BETWEEN #{0} AND #{1} GROUP BY ename, ckno ) g")
     Long selectCountByENameGroup(Date startTime, Date endTime);
 }
